@@ -3,25 +3,45 @@
 @section('title', 'Shopping Cart')
 
 @section('content')
-    <div class="cart-section bg-section">
+    <div class="page-header bg-section">
         <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-7">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">shopping cart</h3>
-                        <h2 class="text-anime-style-2" data-cursor="-opaque">Your <span>Cart Items</span></h2>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Page Header Box Start -->
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-2" data-cursor="-opaque">
+                            <div style="position:relative;display:inline-block;">
+                                Shopping
+                            </div>
+
+                            <span>
+                                Cart
+                            </span>
+                        </h1>
+                        <nav class="wow fadeInUp" data-wow-delay="0.25s"
+                            style="visibility: visible; animation-delay: 0.25s; animation-name: fadeInUp;">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">services</li>
+                            </ol>
+                        </nav>
                     </div>
-                    <!-- Section Title End -->
+                    <!-- Page Header Box End -->
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-services">
 
             @if (Session::has('cart') && count(Session::get('cart')['items']) > 0)
                 <div class="row">
                     <div class="col-12">
                         <div class="cart-items">
                             @foreach (Session::get('cart')['items'] as $id => $item)
-                                <div class="cart-item work-item wow fadeInUp">
+                                <div class="service-item wow fadeInUp"
+                                    style="visibility: visible; animation-name: fadeInUp;">
                                     <div class="row align-items-center">
                                         <div class="col-md-2">
                                             <div class="cart-image">
@@ -32,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="cart-content">
+                                            <div class="cart-content mt-3 mt-md-0">
                                                 <h3>{{ $item['item']->name }}</h3>
                                                 <p>{{ $item['item']->description }}</p>
                                             </div>
@@ -52,7 +72,12 @@
                                                 <form action="{{ route('cart.remove') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="product_id" value="{{ $id }}">
-                                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                                    <button type="submit"
+                                                        class="btn btn-danger w-100 w-md-auto mt-3 mt-md-0"
+                                                        style="position: relative; z-index: 10;">
+                                                        <i class="fas fa-trash"></i>
+                                                        Remove
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
@@ -67,14 +92,17 @@
                     <div class="col-12">
                         <div class="cart-total work-item">
                             <div class="row align-items-center">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <h3>Cart Total</h3>
                                 </div>
-                                <div class="col-md-6 text-right">
+                                <div class="col-md-4 text-start text-md-center">
                                     <div class="total-price">
                                         <h4>Total: ${{ number_format(Session::get('cart')['totalPrice'], 2) }}</h4>
                                     </div>
-                                    <a href="{{ route('checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="{{ route('checkout') }}" class="btn-default mt-3 mt-md-0">Checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -92,13 +120,4 @@
             @endif
         </div>
     </div>
-
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
 @endsection

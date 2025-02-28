@@ -56,8 +56,7 @@
                                     <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <a href="#" data-cursor-text="Add to Cart"
-                                            onclick="this.closest('form').submit();">
+                                        <a href="#" onclick="this.closest('form').submit();">
                                             <i class="fa fa-shopping-cart text-white" style="font-size: 20px;"></i>
                                         </a>
 
@@ -75,41 +74,7 @@
         </div>
     </div>
 
-    <div class="our-shop bg-section">
-        <div class="container">
 
-
-
-
-            <div class="row">
-                @foreach ($products as $product)
-                    <div class="col-lg-4 col-md-6">
-                        <!-- Product Item Start -->
-                        <div class="work-item wow fadeInUp">
-                            <div class="work-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-                                </figure>
-                            </div>
-                            <div class="work-body">
-                                <div class="work-content">
-                                    <h3>{{ $product->name }}</h3>
-                                    <p>{{ $product->description }}</p>
-                                    <div class="product-price">
-                                        <span>${{ number_format($product->price, 2) }}</span>
-                                    </div>
-                                </div>
-                                <div class="work-btn d-flex justify-content-between align-items-center">
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Product Item End -->
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

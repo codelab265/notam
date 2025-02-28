@@ -22,8 +22,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/cart">
                                     <i class="fas fa-shopping-cart"></i> Cart
+
                                     <span
-                                        class="badge badge-pill badge-danger">{{ Session::has('cart') ? Session::get('cart')->totalQty : '0' }}</span>
+                                        class="badge badge-pill badge-danger">{{ Session::has('cart') ? Session::get('cart')['totalQty'] : '0' }}</span>
                                 </a>
                             </li>
 
@@ -31,7 +32,7 @@
                     </div>
                     <!-- Header Btn Start -->
                     <div class="header-btn">
-                        <a href="contact.html" class="btn-default">Contact Us</a>
+                        <a href="{{ route('contact') }}" class="btn-default">Contact Us</a>
                     </div>
                     <!-- Header Btn End -->
                 </div>
